@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Drug Interaction Checker</title>
+    <meta
+      name="description"
+      content="Educational frontend web application for searching sample medicines and viewing fictional interaction information."
+    />
+    <meta property="og:title" content="Drug Interaction Checker" />
+    <meta
+      property="og:description"
+      content="Educational frontend web application for searching sample medicines and viewing fictional interaction information."
+    />
+    <meta property="og:type" content="website" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <!-- Top Navigation Bar -->
+    <header class="site-header">
+      <div class="container header-inner">
+        <a href="#home" class="brand-logo">
+          <span class="brand-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z" />
+              <path d="m8.5 8.5 7 7" />
+            </svg>
+          </span>
+          <span class="brand-text">Drug Interaction Checker</span>
+        </a>
+
+        <nav class="main-nav" aria-label="Primary Navigation">
+          <a href="#home" class="nav-link">Home</a>
+          <a href="#check-interaction" class="nav-link">Check Interaction</a>
+          <a href="#about" class="nav-link">About</a>
+          <a href="#safety" class="nav-link">Safety Information</a>
+        </nav>
+
+        <div class="header-actions">
+          <button type="button" class="btn btn-primary btn-sm nav-cta" data-scroll-target="check-interaction">
+            Check Now
+          </button>
+          <button
+            type="button"
+            id="mobile-menu-btn"
+            class="mobile-menu-btn"
+            aria-label="Toggle navigation menu"
+            aria-expanded="false"
+            aria-controls="mobile-nav"
+          >
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="4" y1="6" x2="20" y2="6" />
+              <line x1="4" y1="12" x2="20" y2="12" />
+              <line x1="4" y1="18" x2="20" y2="18" />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Navigation Drawer -->
+      <nav id="mobile-nav" class="mobile-nav" aria-label="Mobile Navigation" hidden>
+        <div class="container mobile-nav-inner">
+          <a href="#home" class="mobile-nav-link">Home</a>
+          <a href="#check-interaction" class="mobile-nav-link">Check Interaction</a>
+          <a href="#about" class="mobile-nav-link">About</a>
+          <a href="#safety" class="mobile-nav-link">Safety Information</a>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <!-- Hero Section -->
+      <section id="home" class="hero-section">
+        <div class="container hero-grid">
+          <div class="hero-content">
+            <p class="hero-kicker">Educational Student Project &middot; Frontend MVP</p>
+            <h1 class="hero-title">Check Medicine Interactions</h1>
+            <p class="hero-subtitle">
+              Explore sample medicine interaction information through a simple and user-friendly interface.
+            </p>
+            <div class="hero-actions">
+              <button type="button" id="hero-check-btn" class="btn btn-primary btn-lg">
+                <span>Check Now</span>
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M5 12h14" />
+                  <path d="m12 5 7 7-7 7" />
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- Medical-themed SVG Illustration -->
+          <div class="hero-visual" aria-hidden="true">
+            <div class="illustration-panel">
+              <svg viewBox="0 0 420 300" class="hero-svg" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="16" y="16" width="388" height="268" rx="18" fill="#FFFFFF" stroke="#D5E5F6" stroke-width="1.5" />
+                <path d="M40 62H380" stroke="#EAF3FF" stroke-width="1.5" />
+                <circle cx="52" cy="40" r="5" fill="#1769AA" fill-opacity="0.25" />
+                <circle cx="70" cy="40" r="5" fill="#1769AA" fill-opacity="0.15" />
+                <circle cx="88" cy="40" r="5" fill="#1769AA" fill-opacity="0.1" />
+
+                <!-- Left Sample Medicine Card -->
+                <rect x="44" y="88" width="128" height="106" rx="12" fill="#EAF3FF" stroke="#C5DCF4" stroke-width="1.5" />
+                <rect x="64" y="108" width="46" height="20" rx="10" fill="#1769AA" />
+                <rect x="87" y="108" width="23" height="20" rx="10" fill="#FFFFFF" fill-opacity="0.88" />
+                <rect x="64" y="142" width="88" height="10" rx="5" fill="#1769AA" fill-opacity="0.3" />
+                <rect x="64" y="162" width="62" height="8" rx="4" fill="#1769AA" fill-opacity="0.18" />
+
+                <!-- Right Sample Medicine Card -->
+                <rect x="248" y="88" width="128" height="106" rx="12" fill="#EAF3FF" stroke="#C5DCF4" stroke-width="1.5" />
+                <rect x="268" y="108" width="46" height="20" rx="10" fill="#1769AA" />
+                <rect x="291" y="108" width="23" height="20" rx="10" fill="#FFFFFF" fill-opacity="0.88" />
+                <rect x="268" y="142" width="88" height="10" rx="5" fill="#1769AA" fill-opacity="0.3" />
+                <rect x="268" y="162" width="62" height="8" rx="4" fill="#1769AA" fill-opacity="0.18" />
+
+                <!-- Center Interaction Lookup Shield -->
+                <path d="M172 141H248" stroke="#1769AA" stroke-width="2" stroke-dasharray="5 5" />
+                <circle cx="210" cy="141" r="26" fill="#FFFFFF" stroke="#1769AA" stroke-width="2" />
+                <path d="M210 129V153M198 141H222" stroke="#1769AA" stroke-width="3" stroke-linecap="round" />
+
+                <!-- Bottom Sample Summary Bar -->
+                <rect x="44" y="214" width="332" height="44" rx="10" fill="#F5F8FC" stroke="#DCE7F3" stroke-width="1.5" />
+                <circle cx="68" cy="236" r="8" fill="#1769AA" fill-opacity="0.18" />
+                <path d="M65 236L67.5 238.5L72 233.5" stroke="#1769AA" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                <rect x="88" y="231" width="160" height="10" rx="5" fill="#1E293B" fill-opacity="0.2" />
+                <rect x="296" y="227" width="64" height="18" rx="6" fill="#1769AA" fill-opacity="0.15" />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Medicine Selection Section -->
+      <section id="check-interaction" class="checker-section">
+        <div class="container">
+          <div class="section-header">
+            <h2 class="section-title">Select Your Medicines</h2>
+            <p class="section-subtitle">
+              Search and choose two different sample medicines below to view fictional demonstration records.
+            </p>
+          </div>
+
+          <div class="checker-card">
+            <p class="sample-directory">
+              Available sample entries: Demo Medicine A &middot; Demo Medicine B &middot; Demo Medicine C &middot; Demo Medicine D &middot; Demo Medicine E
+            </p>
+
+            <form id="interaction-form" class="checker-form" novalidate>
+              <div class="inputs-grid">
+                <!-- First Medicine Input -->
+                <div class="field-group">
+                  <label for="medicine-one-input" class="field-label">First Medicine</label>
+                  <div class="combobox-wrapper" data-combobox="one">
+                    <span class="input-icon" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8" />
+                        <path d="m21 21-4.3-4.3" />
+                      </svg>
+                    </span>
+                    <input
+                      type="text"
+                      id="medicine-one-input"
+                      class="search-input"
+                      placeholder="Search first medicine (e.g. Demo Medicine A)"
+                      autocomplete="off"
+                      role="combobox"
+                      aria-autocomplete="list"
+                      aria-expanded="false"
+                      aria-controls="medicine-one-dropdown"
+                    />
+                    <button
+                      type="button"
+                      id="clear-one-btn"
+                      class="clear-field-btn"
+                      aria-label="Clear first medicine"
+                      hidden
+                    >
+                      &times;
+                    </button>
+                    <ul
+                      id="medicine-one-dropdown"
+                      class="suggestions-dropdown"
+                      role="listbox"
+                      aria-label="First medicine suggestions"
+                      hidden
+                    ></ul>
+                  </div>
+                </div>
+
+                <!-- Second Medicine Input -->
+                <div class="field-group">
+                  <label for="medicine-two-input" class="field-label">Second Medicine</label>
+                  <div class="combobox-wrapper" data-combobox="two">
+                    <span class="input-icon" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8" />
+                        <path d="m21 21-4.3-4.3" />
+                      </svg>
+                    </span>
+                    <input
+                      type="text"
+                      id="medicine-two-input"
+                      class="search-input"
+                      placeholder="Search second medicine (e.g. Demo Medicine B)"
+                      autocomplete="off"
+                      role="combobox"
+                      aria-autocomplete="list"
+                      aria-expanded="false"
+                      aria-controls="medicine-two-dropdown"
+                    />
+                    <button
+                      type="button"
+                      id="clear-two-btn"
+                      class="clear-field-btn"
+                      aria-label="Clear second medicine"
+                      hidden
+                    >
+                      &times;
+                    </button>
+                    <ul
+                      id="medicine-two-dropdown"
+                      class="suggestions-dropdown"
+                      role="listbox"
+                      aria-label="Second medicine suggestions"
+                      hidden
+                    ></ul>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Friendly Validation Alert -->
+              <div id="validation-message" class="validation-alert" role="alert" hidden>
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <circle cx="12" cy="12" r="10" />
+                  <line x1="12" y1="8" x2="12" y2="12" />
+                  <line x1="12" y1="16" x2="12.01" y2="16" />
+                </svg>
+                <span id="validation-text"></span>
+              </div>
+
+              <!-- Action Buttons -->
+              <div class="checker-actions">
+                <button type="submit" id="check-interaction-btn" class="btn btn-primary">
+                  Check Interaction
+                </button>
+                <button type="button" id="reset-btn" class="btn btn-secondary">
+                  Reset
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <!-- Interaction Result Section (Displayed after clicking Check Interaction) -->
+          <div id="result-container" class="result-wrapper" aria-live="polite" hidden>
+            <article id="result-card" class="result-card"></article>
+          </div>
+        </div>
+      </section>
+
+      <!-- About Section -->
+      <section id="about" class="about-section">
+        <div class="container">
+          <div class="section-header">
+            <h2 class="section-title">About Our Project</h2>
+            <p class="section-subtitle about-lead">
+              Drug Interaction Checker is an educational student project designed to demonstrate how medicine reference information can be searched and displayed through a web application.
+            </p>
+          </div>
+
+          <div class="about-grid">
+            <article class="feature-card">
+              <div class="feature-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="11" cy="11" r="8" />
+                  <path d="m21 21-4.3-4.3" />
+                </svg>
+              </div>
+              <h3 class="feature-title">Easy Medicine Search</h3>
+              <p class="feature-text">
+                Type into either search field to filter sample medicines in real time and pick items from a clean suggestion list.
+              </p>
+            </article>
+
+            <article class="feature-card">
+              <div class="feature-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                  <polyline points="14 2 14 8 20 8" />
+                  <line x1="16" y1="13" x2="8" y2="13" />
+                  <line x1="16" y1="17" x2="8" y2="17" />
+                </svg>
+              </div>
+              <h3 class="feature-title">Simple Interaction Lookup</h3>
+              <p class="feature-text">
+                Select two different sample medicines and review structured demonstration records or clear missing-record notices.
+              </p>
+            </article>
+
+            <article class="feature-card">
+              <div class="feature-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="3" width="18" height="18" rx="3" />
+                  <path d="M3 9h18" />
+                  <path d="M9 21V9" />
+                </svg>
+              </div>
+              <h3 class="feature-title">User-Friendly Interface</h3>
+              <p class="feature-text">
+                Built with clear healthcare styling, accessible controls, and a responsive layout for desktop, tablet, and mobile screens.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Safety Information Section -->
+      <section id="safety" class="safety-section">
+        <div class="container">
+          <div class="safety-card" role="note" aria-label="Safety Information">
+            <div class="safety-header">
+              <span class="safety-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z" />
+                  <line x1="12" y1="9" x2="12" y2="13" />
+                  <line x1="12" y1="17" x2="12.01" y2="17" />
+                </svg>
+              </span>
+              <h2 class="safety-title">Safety Information</h2>
+            </div>
+            <p class="safety-text">
+              This application is an educational software demonstration only. It does not provide medical advice, diagnosis, or treatment recommendations. Sample data is fictional. Always consult a qualified doctor or pharmacist about medicine-related questions. A missing record does not establish that a medicine combination is safe.
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <div class="footer-brand">
+          <span class="footer-title">Drug Interaction Checker</span>
+          <span class="footer-sep" aria-hidden="true">&middot;</span>
+          <span class="footer-tag">Student Project</span>
+        </div>
+
+        <nav class="footer-nav" aria-label="Footer Navigation">
+          <a href="#home" class="footer-link">Home</a>
+          <a href="#about" class="footer-link">About</a>
+          <a href="#safety" class="footer-link">Safety Information</a>
+        </nav>
+
+        <p class="footer-copy">&copy; 2026 Drug Interaction Checker. Educational demonstration only.</p>
+      </div>
+    </footer>
+  </body>
+</html>
